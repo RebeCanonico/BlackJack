@@ -1,27 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Cousine&family=Kanit&family=Rubik&display=swap');
 body {
     margin: 0;
-
     font-family: 'Kanit', sans-serif;
-    background: #ffffff;
-
+    background: #070707;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container {
+    margin-top: 25px;
+    margin-bottom: 25px;
     background: linear-gradient(135deg, #044504 66%, #011f01);
     padding: 50px;
-    width: 65%;
-    min-width: 800px;
-    margin: 100px;
-
+    width: 90%;
+    min-width: 95%;
+    height: 90%;
+    min-height: 900px;
     border-radius: 10px;
     box-shadow: 0 0 10px 5px;
-
     position: relative;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,10 +27,16 @@ body {
 
     user-select: none;
 }
+.titulo{
+    position: relative;
+    top: -75px;
+    color: #ffffff;
+    font-family: Copperplate Gothic;
+}
 
 #contenedor-baraja {
     position: relative;
-    height: 360px;
+    height: 250px;
 
     transition: all 1s;
     display: flex;
@@ -55,6 +59,25 @@ body {
 .controles {
     display: flex;
     justify-content: space-between;
+}
+
+.controles-cartas {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+}
+
+.controles-cartas .boton {
+    margin: 10px;
+    padding: 5px 10px;
+    text-align: center;
+    text-shadow: 0 0 9px;
+    border-radius: 5px;
+    background: #161515;
+    color: #ddad32;
+    transition: all 0.3s;
 }
 
 .controles .boton {
@@ -92,9 +115,29 @@ p span div {
 }
 
 #boteApuestas {
-text-align: center;
- 
-background:  #ddad32;
-border-radius: 10px;
-box-shadow: 0 0 10px 2px;
+    text-align: center;
+    background:  #ddad32;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px;
+    width: 350px;
+
+}
+.apuestas{
+    width: 350px;
+}
+.contenedor-fichas{
+    position: absolute;
+    top: 60%;
+    left: 5%;
+}
+.contenedor-resultado{
+    position: absolute;
+    top: 70%;
+    right: 5%;    
+    width: 25%;
+    padding: 2%;
+    background-color: #161515;
+    border: 1px solid #ddad32;
+    border-radius: 10px;
+    justify-content: center;
 }

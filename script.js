@@ -19,6 +19,10 @@ let barajaTrasera = document.querySelectorAll('.trasera');
 let num = document.querySelectorAll('.baraja .num');
 let palos = document.querySelectorAll('.baraja .palo');
 let boteApuestas = document.getElementById('boteApuestas');
+boteApuestas.innerHTML = "<div class='row'>"
+        + "<p> Apuesta actual : " + 0 + "</p>"
+        + "<p> Balance : " + balance + "</p>"
+        + "</div>";
 // El juego de la casa
 let puntosCasa = 0;
 let jugadaCasa = [];
@@ -38,6 +42,11 @@ const btnPedir = document.getElementById('btn-pedir');
 const btnPlantarse = document.getElementById('btn-plantarse');
 const btnSeguir = document.getElementById('btn-seguir');
 const fichasBtn = document.getElementsByClassName('ficha');
+const tableroResultado = document.getElementsByClassName('contenedor-resultado');
+const tableros = document.getElementsByClassName('tableros');
+tableros[0].style.display = 'none';
+tableroResultado[0].style.display = 'none';
+
 
 // Desactivar botones usuario
 desactivarBoton([btnIniciar,btnPedir,btnPlantarse,btnSeguir]);
@@ -48,6 +57,8 @@ btnIniciar.addEventListener('click', empezarJuego);
 btnPedir.addEventListener('click', darCarta);
 btnPlantarse.addEventListener('click', plantarse);
 btnSeguir.addEventListener('click', seguirJugando);
+juntar();
+voltearBaraja();
 
 // FUNCIONES
 
@@ -110,7 +121,7 @@ function crearBaraja() {
             + "<div class='palo'>" + print + "</div>"
             + "<div class='num bot'>" + valor + "</div>"
             + "</div>"
-            + "<div class='duda trasera'><div class='palo'>" + iconoDuda + "</div></div>"
+            + "<div class='duda trasera'><div class='palo'></div></div>"
             + "</div>"
             + "</div>";
 
@@ -124,11 +135,20 @@ function crearBaraja() {
     Se crea una carta de la casa girada y se activan los botones de Pedir y Plantarse, 
     ademas de desactivan los botones de las fichas y de iniciar. */
 function empezarJuego() {
+    voltearBaraja();
+    separar();
     
-    // Se resetean las cartas
+    setTimeout(() => {
+        mezclar();
+        voltearBaraja();
+        juntar(); 
+    }, 1000);
+    
+    setTimeout(() => {
+        // Se resetean las cartas
     jugadaCasa = [];
     jugadaJugador = [];
-
+    tableros[0].style.display = 'flex';
     // Recogemos la dos cartas iniciales del jugador:
     darCarta();
     darCarta();
@@ -142,6 +162,9 @@ function empezarJuego() {
     desactivarBoton(fichasBtn);
     activarBoton([btnPedir,btnPlantarse])
     desactivarBoton([btnIniciar]);
+    }, 3000);
+    
+    
 }
 /* Esta función recibe un array de botones y los activa estableciendo el valor de las 
 propiedades CSS pointer-events y opacity.  */
@@ -265,28 +288,43 @@ function ganador() {
       apuestaActual = 0;
       desactivarBoton([btnPedir,btnPlantarse]);
       activarBoton([btnSeguir]);
+      voltearBaraja();
+      separar();
+      mezclar();
     } else if (puntosCasa === 21 && puntosJugador !== 21) {
       mensaje = "La casa tiene un Blackjack ¡Has perdido!";
       apuestaActual = 0;
       desactivarBoton([btnPedir,btnPlantarse]);
       activarBoton([btnSeguir]);
+      voltearBaraja();
+      separar();
+      mezclar();
     } else if (puntosCasa !== 21 && puntosJugador === 21) {
       mensaje = "El jugador tiene un Blackjack. ¡Has ganado!";
       balance += 2 * apuestaActual;
       apuestaActual = 0;
       desactivarBoton([btnPedir,btnPlantarse]);
       activarBoton([btnSeguir]);
+      voltearBaraja();
+      separar();
+      mezclar();
     } else if (puntosJugador > 21) {
       mensaje = "El jugador se ha pasado de 21. Gana la casa";
       apuestaActual = 0;
       desactivarBoton([btnPedir,btnPlantarse]);
       activarBoton([btnSeguir]);
+      voltearBaraja();
+      separar();
+      mezclar();
     } else if (puntosCasa > 21) {
       mensaje = "La casa se ha pasado de 21. Gana el jugador";
       balance += 2 * apuestaActual;
       apuestaActual = 0;
       desactivarBoton([btnPedir,btnPlantarse]);
       activarBoton([btnSeguir]);
+      voltearBaraja();
+      separar();
+      mezclar();
     }
     boteApuestas.innerHTML = "<div class='row'>"
         + "<p> Apuesta actual : " + apuestaActual + "</p>"
@@ -295,6 +333,7 @@ function ganador() {
   
     // Se actualiza el HTML del balance de apuestas
     resultado.innerHTML = mensaje;
+    tableroResultado[0].style.display = 'flex';
 }
 /* Se encarga de repartir cartas para la casa o el jugador según el valor del parámetro jugada. 
 Si el valor es 'casa', se agrega una carta aleatoria del mazo de cartas de la casa a la jugada actual. 
@@ -355,8 +394,15 @@ Luego, se inicializan los valores de la jugada de la casa y se llama a la funci�
 darCarta('casa') para que la casa reciba su primera carta.
 También sirve para resetear la partida despues de cada mano y volver a empezar. */
 function seguirJugando(){
+    resultado.innerHTML = '';
+    displayCasa.innerHTML = '';
+    displayJugador.innerHTML = '';
+    tableros[0].style.display = 'none';
+    tableroResultado[0].style.display = 'none';
     desactivarBoton([btnIniciar,btnPedir,btnPlantarse,btnSeguir]);
     activarBoton(fichasBtn);
+    juntar();
+    voltearBaraja();
 
     // El juego de la casa
     let puntosCasa = 0;

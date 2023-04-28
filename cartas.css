@@ -7,11 +7,13 @@
 }
 
 span#mano-casa {
+    padding-top: 25px;
     color: var(--palo-rojo);
     text-shadow: 0 0 3px var(--palo-rojo);
 }
 
 span#mano-jugador {
+    padding-top: 25px;
     color: var(--palo-negro);
     text-shadow: 0 0 3px var(--palo-negro);
 }
@@ -20,12 +22,10 @@ span#mano-jugador {
     height: 90px;
     width: 60px;
     perspective: 500px;
-
+    background: #161515cc;
     position: relative;
-    
     left: 0px;
     order: 0;
-
     transition: all 1.5s;
 }
 
@@ -44,10 +44,31 @@ span#mano-jugador {
 .carta * {
     text-shadow: 0 0 18px, 0 0 5px;
 }
+#mano-casa > .carta {
+    border: 1px solid var(--palo-rojo);
+    box-shadow: 0 0 2px 2px var(--palo-rojo);
+    border-radius: 2.5px;
+}
 
-.frontal,
-.trasera {
+#mano-jugador > .carta {
+    border: 1px solid var(--palo-negro);
+    box-shadow: 0 0 2px 2px var(--palo-negro);
+    border-radius: 2.5px;
+}
+
+.frontal{
     background: #161515cc;
+    border-radius: 2.5px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.trasera {
+    background-image: url("reverso.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 2.5px;
     position: absolute;
     height: 100%;

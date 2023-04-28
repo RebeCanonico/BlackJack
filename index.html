@@ -10,6 +10,8 @@
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- Cards CSS -->
@@ -20,43 +22,13 @@
 
 </head>
 <body>
-
+ 
     <div class="container">
-
+        <h1 class="titulo"> Blackjack 21</h1>
         <div id="contenedor-baraja">
         </div>
-
-        <div class="controles">
-            <button class="boton" onclick="voltearBaraja()">Voltear cartas</button>
-            <button class="boton" onclick="juntar()">Juntar cartas</button>
-            <button class="boton" onclick="separar()">Separar cartas</button>
-            <button class="boton" onclick="mezclar()">Mezclar cartas</button>
-        </div>
-
-        <div class="tablero">
-            <div class="tablero-casa">
-                <p>Cartas de la casa: <span id="mano-casa"></span></p>
-                <p>Puntos: <span id="puntos-casa"></span></p>
-            </div>
-            <div class="tablero-jugador">
-                <p>Cartas del jugador: <span id="mano-jugador"></span></p>
-                <p>Puntos: <span id="puntos-jugador"></span></p>
-            </div>
-        </div>
-
-        <div class="tablero-resultado">
-            <p id="resultado"></p>
-        </div>
-
-        <div class="controles">
-            <div id="btn-iniciar" class="boton">Repartir cartas</div>
-            <div id="btn-pedir" class="boton">Pedir carta</div>
-            <div id="btn-plantarse" class="boton">Plantarse</div>
-            <div id="btn-seguir" class="boton">Seguir jugando</div>
-        </div>
-
-        <div class="d-flex flex-row">
-            <div class="apuestas">
+        <div class="contenedor-fichas d-flex flex-column">
+            <div class="apuestas d-flex flex-row">
                 <div class="ficha azul" onclick="apostar(10)"></div>
                 <div class="ficha verde" onclick="apostar(25)"></div>
                 <div class="ficha negra" onclick="apostar(100)"></div>
@@ -64,6 +36,31 @@
             <div id="boteApuestas">
             </div>
         </div>
+        <div class="flex-row tableros">
+            <div class="tablero">
+                <div class="tablero-casa">
+                    <p>Cartas de la casa: <span id="mano-casa"></span></p>
+                    <span style="color:white;">Puntos: <span id="puntos-casa"></span></span>
+                </div>
+            </div>
+            <div class="tablero">
+                <div class="tablero-jugador">
+                    <p>Cartas del jugador: <span id="mano-jugador"></span></p>
+                    <span style="color:white;">Puntos: <span id="puntos-jugador"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="controles">
+            <div id="btn-iniciar" class="boton">Repartir cartas</div>
+            <div id="btn-pedir" class="boton">Pedir carta</div>
+            <div id="btn-plantarse" class="boton">Plantarse</div>
+            <div id="btn-seguir" class="boton">Seguir jugando</div>
+        </div>
+
+        <div class="contenedor-resultado">
+            <p id="resultado"></p>
+        </div>
+        
 
     </div>
 </body>
